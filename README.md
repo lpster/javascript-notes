@@ -3,6 +3,7 @@ This repository will contain a lot of notes. Feel free to fork and add your comm
 
 
 ##Professional Javascript for Web Developers (3rd edition, 2012) by Nicholas Zakas
+URL: http://www.amazon.com/Professional-JavaScript-Developers-Nicholas-Zakas/dp/1118026691/
 
 ##Codecademy's Javascript Tracks
 URL: http://www.codecademy.com/tracks/javascript
