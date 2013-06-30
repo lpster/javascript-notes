@@ -14,7 +14,7 @@ URL: http://www.amazon.com/JavaScript-Definitive-Guide-David-Flanagan/dp/0596000
 ###Eloquent Javascript: A Modern Introduction to Programming (2007) by Marijn Haverbeke
 URL: http://eloquentjavascript.net/
 
-###Javascript: The Good Parts
+###Javascript: The Good Parts by Doug Crockford
 URL: http://shop.oreilly.com/product/9780596517748.do
 
 ###Javascript: The Good Parts -- the lecture by Doug Crockford
