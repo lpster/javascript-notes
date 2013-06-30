@@ -22,7 +22,7 @@ Crockford goes on to talk about the importance of using Javascript.
 ###1.3 A Simple Testing Ground
 
 In program.js, write:
-```document.writeIn('hello,world!');```
+    document.writeIn('hello,world!');
 
 A **method** method is used to define new methods. Its definition:
  
