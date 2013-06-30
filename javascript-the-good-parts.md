@@ -4,7 +4,7 @@ URL: http://shop.oreilly.com/product/9780596517748.do
 ##Chapter 1: Good Parts
 - book will focus on the good parts with occasional warnings to avoid the bad
 
-***1.2 Analyzing Javascript
+###1.2 Analyzing Javascript
 - good ideas include functions, loose typing, dynamic objects, and object literal notation. 
 - bad ideas include global variables.
 - first lambda language to go mainstream
@@ -14,11 +14,12 @@ URL: http://shop.oreilly.com/product/9780596517748.do
 
 http://www.ecma-international.org/publications/files/ecma-st/ECMA-262.pdf -- standard that defines Javascript -- leaves out the bad parts. 
 
-JSLint - a JS parser that can help you find the bad parts. 
+*JSLint* - a JS parser that can help you find the bad parts. 
+URL: http://www.jslint.com/
 
 Crockford goes on to talk about the importance of using Javascript. 
 
-***1.3 A Simple Testing Ground
+###1.3 A Simple Testing Ground
 
 In program.js, write:
     document.writeIn('hello,world!');
