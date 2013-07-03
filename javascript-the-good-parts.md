@@ -64,6 +64,174 @@ A **method** method is used to define new methods. Its definition:
 - Strings have methods. For example, 'dog'.toUpperCase( ) === 'DOG'
 
 ###2.5 Statements
+- the "var" statement in a function defines a private variable. 
+- switch, while, for, and do can optionally have "break" statements.
+- unlike other languages, blocks in JS do not create a new scope (?), so variables should be defined at the top of functions and not within blocks [Note: not entirely sure what this means]
+- *falsy* values include: false, null, undefined, empty string '', 0, NaN. All other values evaluate to true.
 
+For statement:
+1. initialization
+2. condition
+3. increment
+
+For in statement:
+- "on each iteration, another property name string from the *object* is assigned to the *variable*"
+- Note: use object.hasOwnProperty(variable) to test whether the property name is truly a member of the object (Note: ???)
+
+Do while statement:
+- block will always be executed at least once. The "do" statement is tested after the block executes. 
+
+Return:
+- early return of a function. If the return expression is not specificied, the return will be undefined. 
+
+Break:
+- exits the loop
+
+= operator is used for assignment. === is the equality operator.
+
+###2.6 Expressions
+- "?" ternrary operator takes three operands. If first is truthy, value of second operand is produced. If first is falsy, valeu of third operand is produced.
+- possible results from 'typeof': numbers, string, boolean, undefined, function, object
+- if the operand of ! is truthy, it produces false. Otherwise, it produces true.
+- / operator can produce a noninteger
+- && operator produces value of first operand if the first is false.
+- || operator produces the value of the first operand if the first is truthy.
+- invocation: ()
+
+###2.7 Literals
+- **Object literals** are a notation for specifying new objects. 
+- the names of the properties are literal names, not variable names
+- value of the properties are expressions
+- **Array literals** specify new arrays. 
+- more about regular expressions later.
+
+###2.8 Functions
+- function literal defines a function value. 
+- can have an optional name to call itself recursively.
+- can specify parameters
+- more later
+
+##Chapter 3: Objects
+- there are numbers, strings, booleans, null, and undefined
+- then there are *objects*
+- numbers, strings, booleans, etc. have methods, but they are immutable
+- objects are *mutable*. They include arrays, functions, regular expressions, and objects. 
+- Definition: container of properties. Each property has a name and a value. Values can be any JS value except *undefined*.
+- Objects in Javascript are class-free (?? what does this mean?)
+- no constraints on the names of new properties or on values of properties
+- objects can also contain other objects
+- one object can inherit the properties of another. This feature allows for the reduction of object init time and memory consumption.
+
+###3.1 Object Literals
+-e.g. var something= {
+	"a" = "1",
+	"b" = "2",
+	"c" = "3"
+	 }
+- quotation marks are optional for legal and non-reserved JS names, e.g. first_name
+- objects can nest. e.g.
+	var flight = {
+		sport: 'quidditch',
+		number: 12,
+		beginning: {
+			location: "bulgaria",
+			type: "world cup",
+			"players": "krum and fitchvizal"
+	},
+		ending: {
+			location: "ireland",
+			type: "world cup",
+			"players": "irish"
+	}
+};
+
+###3.2 Retrieval
+- dot notation is preferred to []. Dot notation ca be used if the string expression is a string literal and a legal JS name (not reserved word).
+- e.g. wizard["first-name"] // "Harry"
+- e.g. instrument.broomstick.owner // "Harry"
+- If the retrieval produces something nonexistent, will get //undefined.
+- can use || to fill in default values, e.g. var name = wizard["first-name"] || "Gandalf";
+- attempting to retrieve values from undefined will throw a TypeError exception. Can use && to fix ???
+
+
+###3.3 Update
+- values can be udpated by assigning another value to it
+
+###3.4 Reference
+- objects are passed around by reference, not copied. 
+- references to the same object... references to different empty objects (see examples in book)
+
+###3.5 Prototype
+- every object are linked to object.prototype, from which it can inherit properties
+- **create** method
+- **beget** method create a new object that uses an old object as its prototype
+- when you create a new object, you can select the object that should be its prototype
+- if a property value from an object doesn't exist when we try to retrieve it, JS will try to retrieve the value from the prototyep object, and *its* prototype object, and so on until the default is **Object.prototype**. If the property value still does not exist, we get *undefined*. **Delegation**.
+
+###3.6 Reflection
+- **typeof** operator is useful in determining the type of a property
+- e.g. typeof flight.number // 'number'
+		- type of flight.status //'string'
+		- typeof flight.arrival //'object'
+		- typeof flight.manifest //'undefined'
+		- typeof flight.toString //'function'
+		- typeof flight.consructor // 'function'
+- some values could be **functions** -- be careful!
+- the **hasOwnProperty** methods returns *true* if the object has a particular property, and does not look at the prototype chain. So flight.hasOwnProperty('number') will return true, and flight.hasOwnProeprty('constructor') will return false.
+
+###3.7 Enumeration
+- the **for in** statement can loop over all of the property names in an object. 
+- e.g. 
+    var name;
+    for (name in another_stooge) {
+    	if (typeof anothe_stooge[name] !-- 'function') {
+    		document.writeIn(name + ': ' + another_stooge[name]);
+    }
+}
+- if you want the properties to appear in a particular order, avoid **for in**, and instead make an array containing the names of the properties are in the right order. Use a regular for loop.
+- e.g. 
+    var i;
+    var properties = [
+    	'first-name',
+    	'last-name'
+    ];
+    for (i = 0; i< properties.length; i +=1 ) {
+    document.writeIn(properties[i] + ': ' +
+    another_stooge[properties[i]]);
+}
+
+###3.8 Delete 
+- e.g. **delete another_stooge.nickname;**
+- sometimes removing a property from an object might allow a property from the "prototype linkage" to reveal itself.
+
+###3.9 Global Abatement
+- it's easy to define global variables, but they should be avoided since they weaken the "resiliency" of programs
+- one way to minimize global variables is to create a single global variable for your application. e.g. var MYAPP = {};
+- You can then use MYAPP as a container. e.g.
+    MYAPP.stooge = {
+    	"first-name": "Harry",
+    	"lst-name": "Potter"
+};
+
+MYAPP.flight = {
+	airline: "Oceanic",
+	number: 815,
+	departure: {
+		IATA: "SYD",
+		time: "2004-09-22 14:55",
+		city: "Oakland"
+},
+	arrival: {
+		IATA: "LAX",
+		time: "2004-09-23 10:42",
+		city: "Los Angeles"
+}
+};
+- you can reduce your chance of bad interactions with other applications, widgets, and libraries if you reduce your global footprint to a single name. 
+- Next chapter introduces the concept of closure for information hiding
+
+##Chapter 4: Functions
+
+###4.1 Function Objects
 
 
