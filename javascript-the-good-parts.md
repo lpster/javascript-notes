@@ -272,6 +272,6 @@ MYAPP.flight = {
 - *Undefined* will be substituted for the missing values if there are too few argument values, and extra argument values will be ignored.
 - There is no type checkign on the argument values; any type of value can be passed to any parameter. 
 
-##4.3.1 The Method Invocation Pattern
+###4.3.1 The Method Invocation Pattern
 
 
