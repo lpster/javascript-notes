@@ -244,7 +244,7 @@ MYAPP.flight = {
 - Functions are objects, so can be stored in variables, objects, and arrays, passed as arguments to functions, and returned from functions, and can have methods. 
 - Special thing about functions: they can be *invoked*. 
 
-##4.2 Function Literal
+###4.2 Function Literal
 - **Function objects** are created with **function literals**.
 - For example:
     var add = function(a,b) {
@@ -258,7 +258,7 @@ MYAPP.flight = {
 - functions can be defined inside of other functions. An inner function has access to the outer function's parameters and variables.
 - the function object created by a function literal contains a link to that outer context ??? - which is called **closure**. Enormous expressive power??
 
-##4.3 Invocation
+###4.3 Invocation
 - invoking a function stops the execution of the current function and passes control/parameters to the new function.
 - in addition to the declared parameters, every function receives 2 additional parameters: **this** and **arguments**.
 - the value of "this" is determined by the **invocation pattern**, of which there are four patterns:
