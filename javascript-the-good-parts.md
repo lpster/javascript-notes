@@ -1,7 +1,9 @@
 #Javascript: The Good Parts by Doug Crockford
 URL: http://shop.oreilly.com/product/9780596517748.do
 
-Below contain my notes.
+**Background/Review:** Because this book was recommended by so many people, I started reading it about a year ago, but quickly got bored by the technical terms and transitioned to a tutorial about jQuery -- which was much easier to understand and had some satisfying immediate applications. I'm going back to this book, now, so that I can get a better grounding in the language that powers jQuery, which is really only a javascript library. Having gone through Codecademy's JS exercises and some immediate application practice with jQuery, I've found this second time read-through much easier to understand. Below contain my [rather thorough] notes of "The Good Parts." I will try to keep this document updated consistently until I reach the end of the book.
+
+**Warning:** I would NOT recommend this book to a complete Javascript beginner, especially someone who's learning how to code for the first time. They'll have to wade through paragraphs describing "invocation patterns" or other simple, re-occurring javascript uses and be confused by it all. It's also somewhat boring to read when you're starting out with no idea about how you can use javascript. For someone who already has some experiences with javascript or other programming languages, however, this book is great.
 
 ##Chapter 1: Good Parts
 - book will focus on the good parts with occasional warnings to avoid the bad
@@ -233,5 +235,43 @@ MYAPP.flight = {
 ##Chapter 4: Functions
 
 ###4.1 Function Objects
+- Functions are objects. 
+- Objects are collections of name/value pairs that have a hidden link to a prototype object
+- Objects produced from object literals are linked to **Object.prototype**.
+- Function objects are linked to **Function.prototype**, which is itself linked to object.prototype 
+- Every function is created with two hidden properties: the function's context and the code that implements the function's behavior.
+- Function objects are created with a prototype property, whose value is an object with a constructor property, whose value is the function. //wow, convoluted much?
+- Functions are objects, so can be stored in variables, objects, and arrays, passed as arguments to functions, and returned from functions, and can have methods. 
+- Special thing about functions: they can be *invoked*. 
+
+##4.2 Function Literal
+- **Function objects** are created with **function literals**.
+- For example:
+    var add = function(a,b) {
+    return a+b;
+    }
+- Four parts to a function literal:
+	1. function
+	2. the function's name (if no name, it is *anonymous*)
+	3. set of parameters of the function, wrapped in parentheses. There can be 0 or more parameter names, separated by commas, in here. These names are defined as variables in the function. Instead of being initialized to **undefined** as with normal variables, they are initialized to the "arguments supplied when the function is invoked."
+	4. { }
+- functions can be defined inside of other functions. An inner function has access to the outer function's parameters and variables.
+- the function object created by a function literal contains a link to that outer context ??? - which is called **closure**. Enormous expressive power??
+
+##4.3 Invocation
+- invoking a function stops the execution of the current function and passes control/parameters to the new function.
+- in addition to the declared parameters, every function receives 2 additional parameters: **this** and **arguments**.
+- the value of "this" is determined by the **invocation pattern**, of which there are four patterns:
+	1. method invocation pattern
+	2. function invocation pattern
+	3. constructor invocation pattern
+	4. apply invocation pattern
+- "The patterns differ in how the bonus parameter **this** is initialized." ??
+- invocation operator: (), which can contain 0 or more expressions.
+- There is no runtime error when the number of arguments and the number of parameters do not match. 
+- *Undefined* will be substituted for the missing values if there are too few argument values, and extra argument values will be ignored.
+- There is no type checkign on the argument values; any type of value can be passed to any parameter. 
+
+##4.3.1 The Method Invocation Pattern
 
 
