@@ -273,5 +273,70 @@ MYAPP.flight = {
 - There is no type checkign on the argument values; any type of value can be passed to any parameter. 
 
 ###4.3.1 The Method Invocation Pattern
+- When a function is stored as a property of an object, we call it a *method*.
+- when a method is invoked, "this" is bound to the object
 
+###4.3.2 The Function Invocation Pattern
+- when a function is invoked e.g. var sum = add(3,4); , *this* is bound to the global object.
+- mistake in the design of the language
+- if had been designed correctly, when inner function invoked, *this* would be bound to the *this* variable of the outer function.
+
+###4.3.3 The Constructor Invocation Pattern
+- the language of JS is class-free, which means that objects can inherit properties directly from other objects. It's a *prototypal* inheritance language.
+- most languages are *classical*. JS also offers an object-making syntax that's reminiscent of the classical languages. 
+- the **new** prefix creates a new objectwith a hidden link to the value of the function's **prototype** member, and **this** will be bound to that new object. Functions that use **new** are called *constructors*.
+
+###4.3.4 The Apply Invocation Pattern
+- functions can have methods
+- The **apply** method constructs an array of arguments to use to invoke a function, and lets us choose the value of **this**. The **apply** method takes two parameters: 1) the value that should be bound to **this**; 2) array of parameters. 
+ e.g.
+
+     //Make an array of two numbers and add them
+     var array = [3,4];
+     var sum = add.apply(null, array);
+
+     //Make an object with a status member.
+
+     var statusObject = {
+     	status: 'A-OK'
+ 	 };
+
+ 	 var status = Quo.prototype.get_status.apply(statusObject);
+
+###4.4 Arguments
+- bonus parameter available to functions when they're invoked: the **arguments** array. It gives the function access to all of the arguments that were supplied with the invocation, including excess arguments that were not assigned to parameters. This makes it possible to write functions that take an unspecified number of parameters:
+
+e.g. function that adds a lot of numbers
+    var sum = function() {
+    var i, sum = 0;
+    for (i=0; i < arguments.length; i+=1) {
+    	sum += arguments[i];
+    }
+    return sum;
+};
+
+document.writeIn(sum(4,8,15,16,23,42)); // 108
+- Chapter 6: add a similar method to an array.
+- Because of a design error, **arguments** is not really an array. Has a **length** element, but **lacks all** of the array methods.
+
+###4.5 Return
+- the **return** statement can be used to cause the function to return early, before it hits the } tag. Will execute immediately without executing the remaining statements.
+- A function **always** returns a value. If the **return** value is not specified, then **undefined** is returned.
+- If the function was invoked with the **new** prefix and the **return** value is NOT an object, **this** (the new object) is returned instead.
+
+###4.6 Exceptions
+- **Exceptions**: mishaps that interfere with the normal flow of a program.
+- when it's detected, the browser will throw an exception.
+- the **throw** statement interrupts execution of the function.
+- if an exception is thrown within a **try** block, control will go to its **catch** clause.
+e.g.
+   var try_it = function() {
+	    try {
+		    add("seven");
+    } catch (e) {
+	   	document.writeIn(e.name + ': ' + e.message);
+    }
+    }
+    try_it ( );
+###4.7 Augmenting Types
 
