@@ -339,4 +339,65 @@ e.g.
     }
     try_it ( );
 ###4.7 Augmenting Types
+- e.g. by augmenting Function.prototype, we can make a method available to all functions.
+- e.g. because JS lacks a method that removes spaces from the ends of a string, we can do:
+    String.method('trim', function() {
+    return this.replace(/^\s+|\s+$/g, '');
+    });
+    document.writeIn('"' + " neat ".trim( ) + '"');
+- All values are endowed with the new methods, even values that were created before the methods were created.
+- Defensive technique example:
+    Function.protype.method = function (name,func) {
+    if (!this.prototype[name] {
+    	this.prototype[name] = func;
+    	return this;
+}
+};
+- Note that the **for in** statement interacts badly with prototypes. 
+
+###4.8 Recurion
+- a recursive function is a function that calls itself, either directly or indirectly. A recursive function calls itself to solve its subproblems.
+- Tower of Hanoi example
+- can be effective in manipulating tree structures in the DOM. Each recursive call is given a smaller piece of the tree to work on. 
+- JS does not have *tail recursion optimization*, which means that if a function returns the result of invoking itself recursively, then the invocation is replaced with a loop, which can speed things up.
+
+###4.9 Scope
+- **Scope** controls the visibility and lifetimes of variables and parameters. 
+- Javascript does NOT have block scope, where all variables defined in a block {} are not visible from outside of the block. 
+- Javascript **does have function scope**, which means that the parameters and variables defined in a function are not visible outside of the function, and that a variable defined anywhere within a function is visible everywhere within the function. 
+- Most languages advise that variables be declared as late as possible but this is bad advice for Javascript because it lacks block scope. 
+- Best to declare all of the variables used in a function at the top of the function body.
+
+###4.10 Closure
+- With the exception of **this** and *arguments*, inner functions get acces to the parameters and variables of the functions they are defined within. 
+- what happens when the inner function has a longer lifetime than its outer function?
+- avoid creating functions within a loop
+
+###4.11 Callbacks
+- asynchhronous requests --> callback function will be invoked when the server's response is received. Will return immediately, so the client isn't blocked.
+    request = prepare_the_request();
+    send_request_asynchronously(request, function(response) {
+    	display(response);
+});
+
+###4.12 Module
+- a modle is a function or object that presents an interface but hides its state and implementation.
+- can eliminate our use of global variables (one of JS's worst features)
+- methods do not make use of *this* or *that*
+
+###4.13 Cascade
+- some methods do not have a return value
+- if we have those methods return **this** instead of **undefined**, we can enable cascade to call many methods on the same object in sequence in a single statement. 
+    getElement('myBoxDiv')
+    	.move(350,150)
+    	.width(100)
+    	.height(100)
+    	.on('mousedown', function(m) {
+    		this.startDrag(m, this.getNinth(m));
+    }).on('mousemove', 'drag')
+    .tip("This box is resizeable");
+
+
+###4.14 Curry
+- Currying lets us produce a new function by combining function + argument.
 
